@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0f1a">
+  <title>CipherTrail — Secure File Audit</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">C</span><span>CipherTrail<small>SECURITY WORKSPACE</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span>◫</span> Overview</a>
+      <a class="nav-item" href="#encrypt"><span>⌁</span> Encryption lab</a>
+      <a class="nav-item" href="#integrity"><span>⌗</span> File integrity</a>
+      <div class="sidebar-note"><span class="pulse"></span><div><b>Local session</b><small>Your demo runs on this device</small></div></div>
+      <div class="sidebar-foot">STUDENT PROJECT · v1.0</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">SECURITY WORKSPACE / OVERVIEW</div><h1>Good work starts with <span>trust.</span></h1><p class="subhead">Encrypt what matters. Check what changed. Keep a clear trail.</p></div>
+        <div class="profile-chip"><span class="avatar">CT</span><span><b>Local demo</b><small>Personal workspace</small></span><span class="chevron">⌄</span></div>
+      </header>
+
+      <section id="overview" class="stats">
+        <article class="stat-card"><div class="stat-top"><span>ENCRYPTION</span><span class="stat-icon violet">⌑</span></div><div class="stat-value"><i class="dot green"></i> Ready</div><p>Fernet symmetric encryption</p></article>
+        <article class="stat-card"><div class="stat-top"><span>INTEGRITY CHECK</span><span class="stat-icon cyan">⌗</span></div><div class="stat-value"><i class="dot green"></i> Available</div><p>SHA-256 fingerprints</p></article>
+        <article class="stat-card"><div class="stat-top"><span>BLOCKCHAIN</span><span class="stat-icon orange">⛓</span></div><div class="stat-value" id="chainStatus"><i class="dot amber"></i> Optional</div><p>Local development chain</p></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel" id="encrypt">
+          <div class="panel-heading"><div class="heading-icon violet">⌁</div><div><h2>Encryption lab</h2><p>Try it with text you choose yourself.</p></div><span class="tag">TEXT DEMO</span></div>
+          <label for="plainText">Your sample text</label>
+          <textarea id="plainText" placeholder="Type a note or sample message here…"></textarea>
+          <div class="actions"><button id="encryptBtn" class="btn primary">Encrypt text <span>↗</span></button><button id="clearBtn" class="btn secondary">Clear</button></div>
+          <div id="textNotice" class="notice" role="status" aria-live="polite"></div>
+          <div class="result-block"><div class="result-head"><span>ENCRYPTED OUTPUT</span><button id="copyEncrypted" class="text-btn">Copy</button></div><textarea id="encryptedText" class="output" placeholder="Your encrypted result will appear here…" spellcheck="false"></textarea><button id="decryptBtn" class="btn secondary full">Decrypt this output</button></div>
+          <div id="decryptNotice" class="notice" role="status" aria-live="polite"></div>
+          <div class="result-block"><div class="result-head"><span>DECRYPTED TEXT</span></div><div id="decryptedText" class="decrypted">Nothing decrypted yet.</div></div>
+        </article>
+
+        <div class="right-column">
+          <article class="panel" id="integrity">
+            <div class="panel-heading"><div class="heading-icon cyan">⌗</div><div><h2>File integrity</h2><p>Get a digital fingerprint for a file.</p></div></div>
+            <label class="dropzone" for="fileInput"><span class="upload-icon">↑</span><b>Choose a file</b><span>Click to browse · up to 10 MB</span><input id="fileInput" type="file" hidden></label>
+            <div id="fileName" class="file-name">No file selected</div>
+            <button id="hashBtn" class="btn primary full">Calculate SHA-256</button>
+            <div id="hashNotice" class="notice" role="status" aria-live="polite"></div>
+            <div class="hash-card"><div class="result-head"><span>SHA-256 FINGERPRINT</span><button id="copyHash" class="text-btn">Copy</button></div><code id="hashOutput">—</code></div>
+            <button id="fileEncryptBtn" class="btn secondary full">Encrypt &amp; download file</button>
+            <p class="hint">The hash changes if even one byte of the file changes.</p>
+          </article>
+
+          <article class="panel chain-panel">
+            <div class="panel-heading"><div class="heading-icon orange">⛓</div><div><h2>Blockchain anchor</h2><p>Record a hash on a local test chain.</p></div></div>
+            <div class="chain-callout"><span class="chain-symbol">⌁</span><div><b>Hash only, never the file</b><small>Use a disposable local development wallet.</small></div></div>
+            <button id="anchorBtn" class="btn secondary full" disabled>Anchor latest hash</button>
+            <div id="chainNotice" class="notice" role="status" aria-live="polite">Calculate a file hash first.</div>
+            <div class="tiny-note">Blockchain is optional and needs local RPC settings in <code>.env</code>.</div>
+          </article>
+        </div>
+      </section>
+      <footer><span>◈ CIPHERTRAIL</span><span>Built for learning · Not a production security product</span></footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
